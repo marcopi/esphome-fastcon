@@ -1,0 +1,44 @@
+[project]
+name = "esphome-fastcon"
+version = "1.0.0"
+description = ""
+license = { text = "MIT" }
+authors = [{ name = "Dennis George" }]
+keywords = ["esphome", "homeassistant", "home", "automation"]
+requires-python = ">=3.9.0"
+dependencies = ["esphome>=2024.12.2"]
+
+[tool.uv]
+default-groups = ["lint"]
+
+[dependency-groups]
+lint = ["ruff>=0.7.0"]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build]
+include = ["components/**/*.py", "components/**/*.h", "components/**/*.cpp"]
+
+[tool.ruff]
+required-version = ">=0.5.0"
+
+[tool.ruff.lint]
+select = [
+    "E",  # pycodestyle
+    "F",  # pyflakes/autoflake
+    "I",  # isort
+    "PL", # pylint
+    "UP", # pyupgrade
+]
+
+ignore = [
+    "E501",    # line too long
+    "PLR0911", # Too many return statements ({returns} > {max_returns})
+    "PLR0912", # Too many branches ({branches} > {max_branches})
+    "PLR0913", # Too many arguments to function call ({c_args} > {max_args})
+    "PLR0915", # Too many statements ({statements} > {max_statements})
+    "PLR2004", # Magic value used in comparison, consider replacing {value} with a constant variable
+    "PLW2901", # Outer {outer_kind} variable {name} overwritten by inner {inner_kind} target
+]
