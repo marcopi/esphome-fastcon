@@ -1,3 +1,5 @@
+#include <vector>
+#include <cstdio>
 #include "esphome/core/log.h"
 #include "utils.h"
 
@@ -108,6 +110,17 @@ namespace esphome
                 ctx.f_0x0 = var8 ^ var18;
                 ctx.f_0x4 = var0;
             }
+        }
+
+        std::vector<char> vector_to_hex_string(std::vector<uint8_t> &data)
+        {
+            std::vector<char> hex_str(data.size() * 2 + 1); // Allocate the vector with the required size
+            for (size_t i = 0; i < data.size(); i++)
+            {
+                sprintf(hex_str.data() + (i * 2), "%02X", data[i]);
+            }
+            hex_str[data.size() * 2] = '\0'; // Ensure null termination
+            return hex_str;
         }
     } // namespace fastcon
 } // namespace esphome
